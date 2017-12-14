@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.ArrayList"%>
-<% ArrayList<Object> productos = new ArrayList<Object>(); %>
+    <%@page import="java.util.ArrayList"
+    	import = "DAO.*"%>
+<% ArrayList<Productos> productos = (ArrayList<Productos>) session.getAttribute("productos");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,7 +55,7 @@ crossorigin="anonymous"></script>
     <br>
     <br>
     
-    <form class="form-inline" method="POST" action="/control">
+    <form class="form-inline" method="POST" action="control">
     <input type="hidden" name="pagina" value="ProductoBusqueda" > 
   <div class="form-group mx-sm-3">
     <label  class="sr-only"> Buscar </label>
@@ -66,28 +68,29 @@ crossorigin="anonymous"></script>
 	<br>
 	<br>
 	<br>
-	<table class="table">
-    <tr class="table-danger">
-      <th scope="col"> idProducto </th>
-      <th scope="col"> Descripcion </th>
-      <th scope="col"> Tipo </th>
-      <th scope="col"> Precio </th>
-    </tr>
-  </thead>
-  <tbody>
+ 	<table class="table"> 
+     <tr class="table-danger"> 
+       <th scope="col"> idProducto </th> 
+       <th scope="col"> Descripcion </th> 
+       <th scope="col"> Tipo </th> 
+       <th scope="col"> Precio </th>
+     </tr> 
+   </thead>
+   <tbody> 
   <% 
-  if (productos != null){
+ if (productos != null){
   	for (Productos p: productos){ %>
-    <tr><a href="UpdateProductos.jsp/<%=productos.getIDProducto()%>">
- 		<td><%=productos.getIDProducto() %></td>
- 		<td><%=productos.getDescripcion() %></td>
- 		<td><%=productos.getTipo() %></td>
- 		<td><%=productos.getPrecio() %></td>
- 		</a>
-    </tr>
+    <a href="UpdateProductos.jsp/<%=p.getIdProductos()%>">
+    <tr>
+ 		<td><%=p.getIdProductos() %></td>
+ 		<td><%=p.getDescripcion() %></td>
+ 		<td><%=p.getTipo() %></td>
+ 		<td><%=p.getPrecio() %></td>
+    </tr> 
+    </a> 
  <% }} %>
-  </tbody>
-</table>
+  </tbody> 
+ </table> 
 
  
 </body>

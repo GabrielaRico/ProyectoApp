@@ -23,12 +23,12 @@ crossorigin="anonymous"></script>
 <body>
 <div class="container">
 <div class="p-3 mb-2 bg-info text-white">.bg-info</div>
-      <form class="form-signin">
+      <form class="form-signin" method="POST" action="/control">
         <h2 class="form-signin-heading"> INICIO DE SESION </h2>
         <label  class="sr-only"> Nombre de Usuario</label>
-        <input  id="inputUser" class="form-control" placeholder="Ingrese usuario" required autofocus>
+        <input  id="inputUser" name = "usuario" class="form-control" placeholder="Ingrese usuario" required autofocus>
         <label for="inputPassword" class="sr-only"> Contraseña </label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Ingrese contraseña" required>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Ingrese contraseña" required>
         <div class="checkbox">
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">  Aceptar </button>

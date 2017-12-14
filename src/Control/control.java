@@ -34,7 +34,7 @@ public class control extends HttpServlet {
         String pagina = request.getParameter("pagina");
         switch(pagina)
         {
-            case "ProductosBusqueda":
+            case "ProductoBusqueda":
                 productosbusqueda(request,response);
                 break;
             case "ProveedoresBusqueda":
@@ -44,7 +44,7 @@ public class control extends HttpServlet {
                 ordenbusqueda(request,response);
                 break;
             case "exito":
-                regresar(request,response);
+                //regresar(request,response);
                 break;
         }
         
@@ -53,13 +53,15 @@ public class control extends HttpServlet {
 		ProductosDAO pdao=new ProductosDAO();
         String descripcion = request.getParameter("descripcion");
         ArrayList <Productos> productos = pdao.Consulta(descripcion);
-        response.setParameter("productos",productos);
+        request.setAttribute("productos",productos);
+        response.sendRedirect("Productos.jsp");
+        System.out.println("asdasd");
 	}
 	private void proveedorbusqueda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorDAO pdao=new ProveedorDAO();
         String descripcion = request.getParameter("descripcion");
-        ArrayList <Productos> productos = pdao.Consulta(descripcion);
-        response.setParameter("productos",productos);
+        //ArrayList <Productos> productos = pdao.Consulta(descripcion);
+        //response.setParameter("productos",productos);
 	}
 	private void ordenbusqueda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
