@@ -13,7 +13,7 @@
 	String nombre = "";
 try
 {
-    Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","alki1380");
+    Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","Alki1380");
     Connection c = d.getConexion();
     Statement s = c.createStatement();
     ResultSet rs = s.executeQuery(sql);

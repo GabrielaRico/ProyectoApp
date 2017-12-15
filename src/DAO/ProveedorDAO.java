@@ -10,7 +10,7 @@ public class ProveedorDAO implements DAO{
 		public boolean Actualizar(Object o) {
 	        boolean b = false;
 	        Proveedor pro = null;
-	        Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","alki1380");
+	        Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","Alki1380");
 	        Connection c = d.getConexion();
 	        String sql = "update Proveedor set idProveedor = ?,direccion = ?,email = ?,telefono = ?,descripcion = ?, where idProveedor = ?";
 	        
@@ -101,7 +101,7 @@ public class ProveedorDAO implements DAO{
       String sql = "select * from Proveedor where descripcion like ('%"+descripcion+"%')";
       try
       {
-          Datasource d = new Datasource("localhost","3306","CLARIANTBD","gabyclariant","rico");
+    	  Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","Alki1380");
           Connection c = d.getConexion();
           Statement s = c.createStatement();
           ResultSet rs = s.executeQuery(sql);

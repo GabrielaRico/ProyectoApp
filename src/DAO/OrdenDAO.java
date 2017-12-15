@@ -10,7 +10,7 @@ public class OrdenDAO implements DAO{
 	public boolean Actualizar(Object o) {
         boolean b = false;
         Orden or = null;
-        Datasource d = new Datasource("localhost","3306","CLARIANTBD","gabyclariant","rico");
+        Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","Alki1380");
         Connection c = d.getConexion();
         String sql = "update Orden set idOrden = ?, fechaCreacion = ?, fechaEntrega = ?, "
         		+ "descripcionArticulo = ?,precioUnitario = ?, numeroPiezas = ?, total = ?,"
@@ -114,7 +114,7 @@ public class OrdenDAO implements DAO{
         String nombre="";
         try
         {
-            Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","alki1380");
+        		Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","Alki1380");
             Connection c = d.getConexion();
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery(sql);
