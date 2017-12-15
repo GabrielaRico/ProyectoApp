@@ -97,7 +97,7 @@ public class DomicilioRFCDAO {
     }
 
     
-    public ArrayList Consulta(String id, String parametro, String parametroDireccion) {
+    public ArrayList Consulta(String descripcion) {
         ArrayList<Productos> productos = null;
         String sql = null;
         switch(parametro)

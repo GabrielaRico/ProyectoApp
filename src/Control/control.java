@@ -60,12 +60,16 @@ public class control extends HttpServlet {
 	private void proveedorbusqueda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorDAO pdao=new ProveedorDAO();
         String descripcion = request.getParameter("descripcion");
-        //ArrayList <Productos> productos = pdao.Consulta(descripcion);
-        //response.setParameter("productos",productos);
+        ArrayList <Proveedor> proveedores = pdao.Consulta(descripcion);
+        request.setAttribute("proveedores",proveedores);
+        response.sendRedirect("Proveedores.jsp");
 	}
 	private void ordenbusqueda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-        
+		OrdenDAO odao = new OrdenDAO();
+		int id = Integer.parseInt(request.getParameter("id"));
+		ArrayList<Orden> ordenes = odao.Consulta(id);
+		request.setAttribute("ordenes",ordenes);
+		response.sendRedirect("Ordenes.jsp");
 	}
         
    

@@ -31,7 +31,7 @@ crossorigin="anonymous"></script>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           <li class="nav-item">
-            <a class="nav-link" href="#">  Home </a>
+            <a class="nav-link" href="PaginaPrincipal.jsp">  Home </a>
           </li>
             <a class="nav-link" href="Productos.jsp">  Productos <span class="sr-only">(current)</span></a>
           </li>
@@ -48,21 +48,29 @@ crossorigin="anonymous"></script>
     <br>
     <br>
     <br>
-    
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
     <form class="form-inline" method="POST" action="/control">
-    <input type="hidden" name="pagina" value="ProductoBusqueda" > 
+    <input type="hidden" name="pagina" value="OrdenBusqueda" > 
   <div class="form-group mx-sm-3">
     <label class="sr-only"> Buscar </label>
     <input type="text" class="form-control" id="buscar" placeholder="Nombre..."> 
   </div>
   <button type="submit" class="btn btn-primary"> Buscar </button>
 </form>
+</div>
+</div>
+</div>
 
 	<br>
 	<br>
 	<br>
 	<br>
-	<table class="table">
+	<div class="container">
+	<div class="row">
+	<table class="table table-responsive-lg">
+	<thead>
     <tr class="table-success">
       <th scope="col"> idProducto </th>
       <th scope="col"> Descripcion </th>
@@ -77,6 +85,8 @@ crossorigin="anonymous"></script>
 
   </tbody>
 </table>
+</div>
+</div>
 <button class="btn btn-primary"><a href="RegistroOrdenes.jsp>" >Crear nueva orden </a></button>
     
 </body>

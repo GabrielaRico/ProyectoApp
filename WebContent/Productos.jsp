@@ -26,6 +26,7 @@ crossorigin="anonymous"></script>
 <title> PRODUCTOS </title>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#"> Control Manager </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +36,7 @@ crossorigin="anonymous"></script>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           <li class="nav-item">
-            <a class="nav-link" href="#">  Home </a>
+            <a class="nav-link" href="PaginaPrincipal.jsp">  Home </a>
           </li>
             <a class="nav-link disabled" href="Productos.jsp">  Productos <span class="sr-only">(current)</span></a>
           </li>
@@ -45,34 +46,35 @@ crossorigin="anonymous"></script>
           <li class="nav-item">
             <a class="nav-link" href="Ordenes.jsp">  Ordenes  </a>
           </li>
-        
         </ul>
       </div>
     </nav>
     
-    <br>
-    <br>
-    <br>
-    <br>
-    
+    <br><br><br><br>
+
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
     <form class="form-inline" method="POST" action="control">
     <input type="hidden" name="pagina" value="ProductoBusqueda" > 
-  <div class="form-group mx-sm-3">
+  <div class="form-group mx-lg-6">
     <label  class="sr-only"> Buscar </label>
     <input type="text" class="form-control" name = "descripcion" id="buscar" placeholder="Nombre..."> 
   </div>
   <button type="submit" class="btn btn-primary"> Buscar </button>
 </form>
-
-	<br>
-	<br>
-	<br>
-	<br>
- 	<table class="table"> 
+</div>
+</div>
+</div>
+<br><br>
+<div class="container">
+	<div class="row">
+			<table class="table table-responsive-lg"> 
+	<thead>
      <tr class="table-danger"> 
-       <th scope="col"> idProducto </th> 
-       <th scope="col"> Descripcion </th> 
-       <th scope="col"> Tipo </th> 
+       <th scope="col"> idProducto </th>
+       <th scope="col"> Descripcion </th>
+       <th scope="col"> Tipo </th>
        <th scope="col"> Precio </th>
      </tr> 
    </thead>
@@ -91,7 +93,9 @@ crossorigin="anonymous"></script>
  <% }} %>
   </tbody> 
  </table> 
-
- 
+			
+		</div>
+	</div>
+ 	</div>
 </body>
 </html>

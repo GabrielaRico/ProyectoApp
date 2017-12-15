@@ -31,7 +31,7 @@ crossorigin="anonymous"></script>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">  Home </a>
+            <a class="nav-link disabled" href="PaginaPrincipal.jsp">  Home </a>
           </li>
             <a class="nav-link" href="Productos.jsp">  Productos <span class="sr-only">(current)</span></a>
           </li>
@@ -45,6 +45,38 @@ crossorigin="anonymous"></script>
         </ul>
       </div>
     </nav>
+    
+<br>
+<br>
+<br>
+
+<div class="row">
+	<div class="col-md-4">
+    <table class="table"> 
+     <tr class="table-danger"> 
+       <th scope="col"> idProducto </th> 
+       <th scope="col"> Descripcion </th> 
+       <th scope="col"> Tipo </th> 
+       <th scope="col"> Precio </th>
+     </tr> 
+   </thead>
+   <tbody> 
+  <% 
+ if (productos != null){
+  	for (Productos p: productos){ %>
+    <a href="UpdateProductos.jsp/<%=p.getIdProductos()%>">
+    <tr>
+ 		<td><%=p.getIdProductos() %></td>
+ 		<td><%=p.getDescripcion() %></td>
+ 		<td><%=p.getTipo() %></td>
+ 		<td><%=p.getPrecio() %></td>
+    </tr> 
+    </a> 
+ <% }} %>
+  </tbody> 
+ </table> 
+ </div>
+</div>
 
     
 
