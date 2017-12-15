@@ -43,9 +43,6 @@ public class control extends HttpServlet {
             case "OrdenesBusqueda":
                 ordenbusqueda(request,response);
                 break;
-            case "exito":
-                //regresar(request,response);
-                break;
         }
         
     }
@@ -55,7 +52,6 @@ public class control extends HttpServlet {
         ArrayList <Productos> productos = pdao.Consulta(descripcion);
         request.setAttribute("productos",productos);
         response.sendRedirect("Productos.jsp");
-        System.out.println("asdasd");
 	}
 	private void proveedorbusqueda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProveedorDAO pdao=new ProveedorDAO();
@@ -66,7 +62,7 @@ public class control extends HttpServlet {
 	}
 	private void ordenbusqueda(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OrdenDAO odao = new OrdenDAO();
-		int id = Integer.parseInt(request.getParameter("id"));
+		String id = request.getParameter("id");
 		ArrayList<Orden> ordenes = odao.Consulta(id);
 		request.setAttribute("ordenes",ordenes);
 		response.sendRedirect("Ordenes.jsp");

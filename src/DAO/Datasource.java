@@ -24,7 +24,7 @@ public class Datasource {
 	    Connection c=null;
 	    try{
 	        Class.forName("com.sqlserver.jdbc.Driver");
-	        c=DriverManager.getConnection("jdbc:mysql://"+hostname+":"+puerto+"/"+bd,usuario,password);
+	        c=DriverManager.getConnection("jdbc:sqlserver://"+hostname+":"+puerto+"/"+bd,usuario,password);
 	        }
 	    catch(Exception e){
 	        e.printStackTrace();

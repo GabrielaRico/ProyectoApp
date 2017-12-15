@@ -108,36 +108,39 @@ public class OrdenDAO implements DAO{
     }
  
     public ArrayList<Orden> Consulta(String descripcion) {
-        ArrayList<Orden> Orden = null;
-        String sql = "select * from Orden where descripcion like ('%"+descripcion+"%')";
+        ArrayList<Orden> ordenes = null;
+        int id = Integer.parseInt(descripcion);
+        String sql = "select * from Orden where id like ('%"+id+"%')";
+        String nombre="";
         try
         {
-            Datasource d = new Datasource("localhost","3306","CLARIANTBD","gabyclariant","rico");
+            Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","alki1380");
             Connection c = d.getConexion();
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery(sql);
-            Orden = new ArrayList<Orden>();
+            ordenes = new ArrayList<Orden>();
             
             while(rs.next())
             {
                 Orden or = new Orden();
                 or.setIdOrden(rs.getInt("idOrden"));
-                or.setDescripcionArticulo(rs.getString("descripcionArticulo"));
-                or.setPrecioUnitrario(rs.getFloat("precioUnitario"));
-                or.setNumeroPiezas(rs.getInt("numeroPiezas"));
-                or.setTotal(rs.getFloat("total"));
-                or.setStatus(rs.getInt("status"));
-                or.setCorreoEnviado(rs.getInt("correoEnviado"));
-
-                Orden.add(or);
+                or.setFechaEntrega(rs.getDate("fechaEntrega"));
+                int idProv = rs.getInt("idProveedor");
+                String idproveedor = "select descripcion from Proveedor where idProveedor ="+idProv;
+                Statement sid = c.createStatement();
+                ResultSet RSid = sid.executeQuery(idproveedor);
+                if(rs.next())
+                	nombre = RSid.getString("descripcion");
+        		or.setProveedor(nombre);
+                ordenes.add(or);
             }
-        }
+                    }
         catch(Exception e)
         {
             e.printStackTrace();
         }
         
-        return Orden;
+        return ordenes;
     }
     
 }

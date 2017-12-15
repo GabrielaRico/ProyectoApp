@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.ArrayList"
+    	import = "DAO.*"%>
+<% ArrayList<Proveedor> proveedores = (ArrayList<Proveedor>) session.getAttribute("productos");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,21 +72,23 @@ crossorigin="anonymous"></script>
 			<table class="table table-responsive-lg"> 
 	<thead>
      <tr class="table-primary"> 
-       <th scope="col"> idProducto </th>
+       <th scope="col"> idProveedor </th>
        <th scope="col"> Descripcion </th>
-       <th scope="col"> Tipo </th>
-       <th scope="col"> Precio </th>
+       <th scope="col"> Email </th>
+       <th scope="col"> Telefono </th>
+       <th scope="col"> Direccion </th>
      </tr> 
    </thead>
    <tbody> 
  <% 
   if (proveedores != null){
   	for (Proveedor p: proveedores){ %>
-    <tr><a href="UpdateProductos.jsp/<%=proveedores.getIDProducto()%>">
- 		<td><%=proveedores.getIDProducto() %></td>
- 		<td><%=proveedores.getDescripcion() %></td>
- 		<td><%=proveedores.getTipo() %></td>
- 		<td><%=proveedores.getPrecio() %></td>
+    <tr><a href="UpdateProductos.jsp/<%=p.getIdProveedor()%>">
+    	<td><%=p.getIdProveedor() %></td>
+ 		<td><%=p.getDescripcion() %></td>
+ 		<td><%=p.getEmail() %></td>
+ 		<td><%=p.getTelefono() %></td>
+ 		<td><%=p.getDireccion() %></td>
  		</a>
     </tr>
  <% }} %>
@@ -92,14 +98,6 @@ crossorigin="anonymous"></script>
 		</div>
 	</div>
  	</div>
-    <form class="form-inline" method="POST" action="/control">
-    <input type="hidden" name="pagina" value="ProductoBusqueda" > 
-  <div class="form-group mx-sm-3">
-    <label class="sr-only"> Buscar </label>
-    <input type="text" class="form-control" id="buscar" placeholder="Nombre..."> 
-  </div>
-  <button class="btn btn-primary"><a href="RegistroOrdenes.jsp>" >Crear nuevo proveedor </a></button>
-</form>
 
 </body>
 </html>

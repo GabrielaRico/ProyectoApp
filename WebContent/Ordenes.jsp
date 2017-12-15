@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.ArrayList"
+    	import = "DAO.*"%>
+<% ArrayList<Orden> ordenes = (ArrayList<Orden>) session.getAttribute("ordenes");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,11 +55,11 @@ crossorigin="anonymous"></script>
     <div class="container">
     <div class="row">
     <div class="col-lg-12">
-    <form class="form-inline" method="POST" action="/control">
+    <form class="form-inline" method="POST" action="control">
     <input type="hidden" name="pagina" value="OrdenBusqueda" > 
-  <div class="form-group mx-sm-3">
-    <label class="sr-only"> Buscar </label>
-    <input type="text" class="form-control" id="buscar" placeholder="Nombre..."> 
+  <div class="form-group mx-lg-6">
+    <label  class="sr-only"> Buscar </label>
+    <input type="text" class="form-control" name = "descripcion" id="buscar" placeholder="Nombre..."> 
   </div>
   <button type="submit" class="btn btn-primary"> Buscar </button>
 </form>
@@ -63,8 +67,7 @@ crossorigin="anonymous"></script>
 </div>
 </div>
 
-	<br>
-	<br>
+	
 	<br>
 	<br>
 	<div class="container">
@@ -72,22 +75,28 @@ crossorigin="anonymous"></script>
 	<table class="table table-responsive-lg">
 	<thead>
     <tr class="table-success">
-      <th scope="col"> idProducto </th>
-      <th scope="col"> Descripcion </th>
-      <th scope="col"> Tipo </th>
-      <th scope="col"> Precio </th>
+      <th scope="col"> idOrden </th>
+      <th scope="col"> Fecha Entrega </th>
+      <th scope="col"> Proveedor </th>
     </tr>
   </thead>
   <tbody>
+    <% 
+ if (ordenes != null){
+  	for (Orden o: ordenes){ %>
+    <a href="UpdateProductos.jsp/<%=o.getIdOrden()%>">
     <tr>
- 
-    </tr>
+ 		<td><%=o.getIdOrden() %></td>
+ 		<td><%=o.getFechaEntrega() %></td>
+ 		<td><%=o.getProveedor() %></td>
+    </tr> 
+    </a> 
+ <% }} %>
 
   </tbody>
 </table>
 </div>
 </div>
-<button class="btn btn-primary"><a href="RegistroOrdenes.jsp>" >Crear nueva orden </a></button>
     
 </body>
 </html>

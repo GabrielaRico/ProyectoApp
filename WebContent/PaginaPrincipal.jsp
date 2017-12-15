@@ -1,5 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@page import="java.util.ArrayList"
+    	import = "DAO.*"
+    	import = "java.sql.*"%>
+<% ArrayList<Orden> ontime = null;
+	ArrayList<Orden> pastdue = null;
+	
+%>
+<%
+	String sql = "select * from Orden where fechaEntrega < getDate() ";
+	String sql2 = "select * from Orden where fechaEntrega > getDate() ";
+	String nombre = "";
+try
+{
+    Datasource d = new Datasource("clariantbd.database.windows.net","3306","clariantbd","gaby","alki1380");
+    Connection c = d.getConexion();
+    Statement s = c.createStatement();
+    ResultSet rs = s.executeQuery(sql);
+    ontime = new ArrayList<Orden>();
+    
+    while(rs.next())
+    {
+        Orden or = new Orden();
+        or.setIdOrden(rs.getInt("idOrden"));
+        or.setFechaEntrega(rs.getDate("fechaEntrega"));
+        int idProv = rs.getInt("idProveedor");
+        String id = "select descripcion from Proveedor where idProveedor ="+idProv;
+        Statement sid = c.createStatement();
+        ResultSet RSid = sid.executeQuery(id);
+        if(rs.next())
+        	nombre = RSid.getString("descripcion");
+		or.setProveedor(nombre);
+        ontime.add(or);
+    }
+    Statement sq = c.createStatement();
+    ResultSet rsq = sq.executeQuery(sql);
+    pastdue = new ArrayList<Orden>();
+    
+    while(rsq.next())
+    {
+    	Orden or = new Orden();
+        or.setIdOrden(rs.getInt("idOrden"));
+        or.setFechaEntrega(rs.getDate("fechaEntrega"));
+        int idProv = rs.getInt("idProveedor");
+        String id = "select descripcion from Proveedor where idProveedor ="+idProv;
+        Statement sid = c.createStatement();
+        ResultSet RSid = sid.executeQuery(id);
+        if(rs.next())
+        	nombre = RSid.getString("descripcion");
+		or.setProveedor(nombre);
+
+        pastdue.add(or);	
+    }
+}
+catch(Exception e)
+{
+    e.printStackTrace();
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,35 +108,62 @@ crossorigin="anonymous"></script>
 <br>
 <br>
 
+<h2>Ordenes Pendientes</h2>
+
 <div class="row">
 	<div class="col-md-4">
     <table class="table"> 
-     <tr class="table-danger"> 
-       <th scope="col"> idProducto </th> 
-       <th scope="col"> Descripcion </th> 
-       <th scope="col"> Tipo </th> 
-       <th scope="col"> Precio </th>
+     <tr class="table-success"> 
+       <th scope="col"> idOrden </th>
+      <th scope="col"> Fecha Entrega </th>
+      <th scope="col"> Proveedor </th>
      </tr> 
    </thead>
    <tbody> 
   <% 
- if (productos != null){
-  	for (Productos p: productos){ %>
-    <a href="UpdateProductos.jsp/<%=p.getIdProductos()%>">
+ if (ontime != null){
+  	for (Orden o: ontime){ %>
+    <a href="UpdateProductos.jsp/<%=o.getIdOrden()%>">
     <tr>
- 		<td><%=p.getIdProductos() %></td>
- 		<td><%=p.getDescripcion() %></td>
- 		<td><%=p.getTipo() %></td>
- 		<td><%=p.getPrecio() %></td>
+ 		<td><%=o.getIdOrden() %></td>
+ 		<td><%=o.getFechaEntrega() %></td>
+ 		<td><%=o.getProveedor() %></td>
     </tr> 
     </a> 
  <% }} %>
+
   </tbody> 
  </table> 
  </div>
 </div>
 
-    
+    <h2>Ordenes Atrasadas</h2>
+    <div class="row">
+	<div class="col-md-4">
+    <table class="table"> 
+     <tr class="table-danger"> 
+       <th scope="col"> idOrden </th>
+      <th scope="col"> Fecha Entrega </th>
+      <th scope="col"> Proveedor </th>
+     </tr> 
+   </thead>
+   <tbody> 
+  <% 
+ if (pastdue != null){
+  	for (Orden o: pastdue){ %>
+    <a href="UpdateProductos.jsp/<%=o.getIdOrden()%>">
+    <tr>
+ 		<td><%=o.getIdOrden() %></td>
+ 		<td><%=o.getFechaEntrega() %></td>
+ 		<td><%=o.getProveedor() %></td>
+    </tr> 
+    </a> 
+ <% }} %>
+
+  </tbody> 
+ </table> 
+ </div>
+</div>
 
 
     <!-- Bootstrap core JavaScript

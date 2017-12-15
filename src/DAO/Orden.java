@@ -12,6 +12,7 @@ public class Orden {
 	private float total;
 	private int Status;
 	private int correoEnviado;
+	private String proveedor;
 	
 	public long getIdOrden() {
 		return idOrden;
@@ -66,6 +67,12 @@ public class Orden {
 	}
 	public void setCorreoEnviado(int correoEnviado) {
 		this.correoEnviado = correoEnviado;
+	}
+	public String getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
 	}
 	
 
